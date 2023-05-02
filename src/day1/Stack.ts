@@ -7,7 +7,7 @@ export default class Stack<T> {
     public length: number;
     private head?: Node<T>;
 
-    constructor(){
+    constructor() {
       this.head = undefined;
       this.length = 0;
     }
@@ -21,26 +21,24 @@ export default class Stack<T> {
         return;
       }
 
-      node.prev = this.head
+      node.prev = this.head;
       this.head = node;
     }
 
     pop(): T | undefined {
       this.length = Math.max(0, this.length - 1);
 
-      if (this.length === 0) {
-        const head = this.head;
-        this.head = undefined;
-        return head?.value;
+      if (!this.head) {
+        return;
       }
 
-      const head = this.head as Node<T>;
-      this.head = head.prev;
-      return head.value;
+      const head = this.head;
+      this.head = this.head.prev;
 
+      return head.value;
     }
 
     peek(): T | undefined {
-      return this.head?.value
+      return this.head?.value;
     }
 }
